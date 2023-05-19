@@ -1,0 +1,10 @@
+[
+    {
+        "nev" : "Valami",
+        "kep" : "nincs.png",
+        "tulajdonsag" : {
+            "eletero" : 1,
+            "sebzes" : -1
+        }
+    }
+]
