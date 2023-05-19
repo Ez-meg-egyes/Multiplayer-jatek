@@ -1,9 +1,14 @@
 import Karakter from "./Karakter.js";
 
-class Ellenseg extends Karakter{
-    
-    constructor() {
-        super();
+class Ellenseg extends Karakter {
+    #dobottTargy;
+
+    constructor(eletero, sebzes, pos, kep, szuloElem) {
+        super(eletero, sebzes, pos, kep, szuloElem);
+    }
+
+    getDobottTargy() {
+        return this.#dobottTargy;
     }
 }
 
