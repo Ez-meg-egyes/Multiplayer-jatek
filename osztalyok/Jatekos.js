@@ -7,7 +7,7 @@ class Jatekos extends Karakter {
     constructor(id, eletero, sebzes, pos, kep, nev, szuloElem) {
         super(id, eletero, sebzes, pos, kep, szuloElem);
         this.#nev = nev;
-        this.#htmlBeagyazas();
+        this.#htmlBeagyazas(szuloElem);
     }
 
     getNev() {
