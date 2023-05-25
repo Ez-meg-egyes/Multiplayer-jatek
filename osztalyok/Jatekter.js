@@ -1,3 +1,4 @@
+import Palya from "./Palya.js";
 
 class Jatekter {
 
@@ -5,7 +6,7 @@ class Jatekter {
     #jatekosok;
 
     constructor() {
-        
+        new Palya(1, 0, {x : 10, y : 8});
     }
 
     #mozgasKezeles() {

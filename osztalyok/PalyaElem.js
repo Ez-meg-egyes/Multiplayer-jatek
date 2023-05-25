@@ -1,3 +1,13 @@
+/*
+    típusok:
+    fal, talaj, blokad
+*/
+
+const PALYA_TIPUSOK = {
+    fal : "kepek/fal.png",
+    talaj : "kepek/talaj.png",
+    blokad : "kepek/blokad.png"
+}
 
 class PalyaElem {
 
@@ -6,28 +16,28 @@ class PalyaElem {
     #targy;
     #divElem;
 
-    constructor(tipus, kep, targy) {
-        this.#tipus = tipus;
-        this.#kep = kep;
+    constructor(tipus, targy) {
+        this.#tipus = `"${tipus}"`;
+        this.#kep = PALYA_TIPUSOK.tipus;
         this.#targy = targy;
         let szuloElem = $("#jatekTer");
-        szuloElem.append(`<div class="divElem"></div>`);
-        this.#divElem = $(".divElem:last-child");
+        szuloElem.append(`<div class="kocka ${this.#tipus}"></div>`);
+        this.#divElem = $(".kocka:last-child");
     }
 
-    getTipus(){
+    getTipus() {
         return this.#tipus;
     }
 
-    ralepheto(){
-
+    ralepheto() {
+        return this.#tipus === "talaj";
     }
 
-    getTargy(){
+    getTargy() {
         return this.#targy;
     }
 
-    removeTargy(){
+    removeTargy() {
 
     }
 }
