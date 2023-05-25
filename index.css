@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+main {
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    max-width: 1000px;
+    height: 100vh;
+    max-height: 560px;
+    background-color: grey;
+    border: 2px solid black;
+}
+main > div {
+    height: 100%;
+}
+main .oldalso {
+    flex: 0 0 15%;
+    background-color: gainsboro;
+}
+
+#jatekTer {
+    flex: 0 0 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: space-around;
+}
+.kocka {
+    flex: 0 0 calc(10% - 3px);
+    aspect-ratio: 1 / 1;
+    background-color: black;
+}
+
+
+#nemTamogatott {
+    display: none;
+    width: 100vw;
+    text-align: center;
+}
+
+@media screen and ((max-width: 1000px) or (max-height: 600px)) {
+    main {
+        display: none;
+    }
+    #nemTamogatott {
+        display: block;
+    }
+  }
