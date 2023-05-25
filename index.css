@@ -17,7 +17,7 @@ main {
     width: 100vw;
     max-width: 1000px;
     height: 100vh;
-    max-height: 600px;
+    max-height: 560px;
     background-color: grey;
     border: 2px solid black;
 }
@@ -26,12 +26,20 @@ main > div {
 }
 main .oldalso {
     flex: 0 0 15%;
-    
     background-color: gainsboro;
 }
 
 #jatekTer {
     flex: 0 0 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: space-around;
+}
+.kocka {
+    flex: 0 0 calc(10% - 3px);
+    aspect-ratio: 1 / 1;
+    background-color: black;
 }
 
 
