@@ -21,7 +21,7 @@ class PalyaElem {
         this.#kep = PALYA_TIPUSOK.tipus;
         this.#targy = targy;
         let szuloElem = $("#jatekTer");
-        szuloElem.append(`<div class="kocka ${this.#tipus}"></div>`);
+        szuloElem.append(`<div class="kocka ${tipus}"></div>`);
         this.#divElem = $(".kocka:last-child");
     }
 

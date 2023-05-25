@@ -6,7 +6,7 @@ class Jatekter {
     #jatekosok;
 
     constructor() {
-        new Palya(1, 0, {x : 10, y : 8});
+        new Palya(1, 0, [10, 8]);
     }
 
     #mozgasKezeles() {

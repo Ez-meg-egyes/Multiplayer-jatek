@@ -42,6 +42,17 @@ main .oldalso {
     background-color: black;
 }
 
+.talaj{
+    background-image: url("kepek/talaj.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.fal{
+    background-image: url("kepek/fal.png");
+    background-position: center;
+    background-size: cover;
+}
 
 #nemTamogatott {
     display: none;
