@@ -3,7 +3,7 @@
 class Karakter {
     #eletero;
     #sebzes;
-    #pos;
+    #pos = [];
     #kep;
     #divElem;
     #szuloElem;
@@ -29,6 +29,14 @@ class Karakter {
     getPos() {
         return this.#pos;
     }
+
+    getX() {
+        return this.#pos[0];
+    }
+
+    getY() {
+        return this.#pos[1];
+    }
     
     getId() {
         return this.#id;
@@ -43,7 +51,7 @@ class Karakter {
     }
 
     setPos(ujPos) {
-        this.pos = ujPos;
+        this.#pos = ujPos;
 
     }
 
