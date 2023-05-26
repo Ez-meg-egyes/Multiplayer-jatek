@@ -5,6 +5,7 @@ class Ellenseg extends Karakter {
 
     constructor(id, eletero, sebzes, pos, kep, szuloElem) {
         super(id, eletero, sebzes, pos, kep, szuloElem);
+        this.#htmlBeagyazas(szuloElem);
     }
 
     getDobottTargy() {
@@ -12,7 +13,7 @@ class Ellenseg extends Karakter {
     }
 
     #htmlBeagyazas(szuloElem) {
-        szuloElem.append(`<div id="ellenseg-${this.getId()}" class="karakter"></div>`)
+        szuloElem.append(`<div id="ellenseg-${this.getId()}" class="ellenseg"></div>`); 
     }
 }
 

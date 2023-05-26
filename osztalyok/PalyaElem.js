@@ -17,7 +17,7 @@ class PalyaElem {
     #divElem;
 
     constructor(tipus, targy) {
-        this.#tipus = `"${tipus}"`;
+        this.#tipus = tipus;
         this.#kep = PALYA_TIPUSOK.tipus;
         this.#targy = targy;
         let szuloElem = $("#jatekTer");
@@ -29,12 +29,25 @@ class PalyaElem {
         return this.#tipus;
     }
 
+    setTipus(tipus){
+        if (PALYA_TIPUSOK[tipus]) {
+            let regiTipus = this.#tipus;
+            this.#tipus = tipus;
+            this.#divElem.removeClass(regiTipus).addClass(tipus);
+            this.#kep = PALYA_TIPUSOK.tipus;
+        }
+    }
+
     ralepheto() {
         return this.#tipus === "talaj";
     }
 
     getTargy() {
         return this.#targy;
+    }
+
+    getDivElem() {
+        return this.#divElem;
     }
 
     removeTargy() {

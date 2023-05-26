@@ -6,8 +6,14 @@ class Jatekter {
     #jatekosok;
 
     constructor() {
-        this.#aktualisPalya = new Palya(1, 0, [10, 8]);
-        this.#mozgasKezeles();
+        const INDIT = $("#indit");
+        const MAIN = $("main");
+        INDIT.on("click", function () {
+            INDIT.css("display", "none");
+            MAIN.css("background-image", "none");
+            this.#aktualisPalya = new Palya(1, 2, [10, 8]);
+            this.#mozgasKezeles();
+        });
     }
 
     #mozgasKezeles() {
