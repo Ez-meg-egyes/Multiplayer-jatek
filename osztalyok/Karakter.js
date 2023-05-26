@@ -3,7 +3,7 @@
 class Karakter {
     #eletero;
     #sebzes;
-    #pos;
+    #pos = [];
     #kep;
     #divElem;
     #szuloElem;

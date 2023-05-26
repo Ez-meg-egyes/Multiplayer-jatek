@@ -5,6 +5,7 @@ class Palya {
     #palyaSzam;
     #ellensegek = [];
     #palyaElemek = [];
+    #jatekos;
 
     constructor(palyaSzam, ellensegek, palyaMeret) {
         this.#palyaSzam = palyaSzam;
@@ -40,8 +41,13 @@ class Palya {
     }
 
     jatekosInit(){
-        let jatekos = new Jatekos(0, 10, 2, [0, 0], "./kepek/jatekos.gif", "Teszt", $("#jatekTer div:first-child"));
+        this.#jatekos = new Jatekos(0, 10, 2, [0, 0], "./kepek/jatekos.gif", "Teszt", $("#jatekTer div:first-child"));
     }
+
+    getJatekosok() {
+        return this.#jatekos;
+    }
+    
 }
 
 export default Palya;
