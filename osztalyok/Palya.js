@@ -8,9 +8,11 @@ class Palya {
     #palyaElemek = [];
     #jatekosok = [];
     #jatekos;
+    #palyaMeret;
 
     constructor(palyaSzam, ellensegekSzama, palyaMeret) {
         this.#palyaSzam = palyaSzam;
+        this.#palyaMeret = palyaMeret;
         this.init(palyaMeret, ellensegekSzama);
     }
 
@@ -81,11 +83,21 @@ class Palya {
     }
 
     jatekosInit(){
-        this.#jatekos = new Jatekos(0, 10, 2, [0, 0], "./kepek/jatekos.gif", "Teszt", $("#jatekTer div:first-child"));
+        let x = 1;
+        let y = 1;
+        this.#jatekos = new Jatekos(0, 10, 2, [x, y], "./kepek/jatekos.gif", "Teszt", this.#palyaElemek[x][y].getDivElem());
     }
 
     getJatekosok() {
         return this.#jatekos;
+    }
+
+    getPalyaElem(x, y) {
+        return this.#palyaElemek[x][y];
+    }
+
+    getPalyaMeret() {
+
     }
     
 }
