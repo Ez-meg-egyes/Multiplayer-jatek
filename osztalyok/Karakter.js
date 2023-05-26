@@ -43,7 +43,7 @@ class Karakter {
     }
 
     setPos(ujPos) {
-        this.pos = ujPos;
+        this.#pos = ujPos;
 
     }
 
