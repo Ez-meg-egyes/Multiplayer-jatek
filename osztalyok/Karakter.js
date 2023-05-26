@@ -29,6 +29,14 @@ class Karakter {
     getPos() {
         return this.#pos;
     }
+
+    getX() {
+        return this.#pos[0];
+    }
+
+    getY() {
+        return this.#pos[1];
+    }
     
     getId() {
         return this.#id;

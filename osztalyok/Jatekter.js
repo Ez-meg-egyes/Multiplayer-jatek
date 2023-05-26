@@ -4,6 +4,7 @@ class Jatekter {
 
     #aktualisPalya;
     #jatekosok;
+    #ellensegek =[];
 
     constructor() {
         const INDIT = $("#indit");
@@ -13,6 +14,13 @@ class Jatekter {
             MAIN.css("background-image", "none");
             this.#aktualisPalya = new Palya(1, 2, [10, 8]);
             this.#mozgasKezeles();
+
+            this.#jatekosok = this.#aktualisPalya.getJatekosok();
+            this.#ellensegek = this.#aktualisPalya.getEllensegek();
+
+            setInterval(() => {
+                this.#ellensegMozgatas();
+            }, 1000);
         });
     }
 
@@ -47,7 +55,11 @@ class Jatekter {
     }
 
     #ellensegMozgatas() {
-
+        this.#ellensegek.forEach(ellenseg => {
+            /* $(`#ellenseg-${ellenseg.getId()}`).remove(); */
+            console.log(ellenseg);
+            console.log(ellenseg.getPos());
+        });
     }
 
     #szintKezeles() {
