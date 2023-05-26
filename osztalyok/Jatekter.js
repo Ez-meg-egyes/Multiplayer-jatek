@@ -8,17 +8,33 @@ class Jatekter {
     #palya;
 
     constructor() {
-        this.#palya = new Palya(1, 2, [10, 8]);
-        this.#jatekosok = this.#palya.getJatekosok();
-        this.#ellensegek = this.#palya.getEllensegek();
+        const INDIT = $("#indit");
+        const MAIN = $("main");
+        INDIT.on("click", function () {
+            INDIT.css("display", "none");
+            MAIN.css("background-image", "none");
+            this.#aktualisPalya = new Palya(1, 2, [10, 8]);
+            this.#mozgasKezeles();
 
-        setInterval(() => {
-            this.#ellensegMozgatas();
-        }, 1000);
+            this.#jatekosok = this.#palya.getJatekosok();
+            this.#ellensegek = this.#palya.getEllensegek();
+
+            setInterval(() => {
+                this.#ellensegMozgatas();
+            }, 1000);
+        });
     }
 
     #mozgasKezeles() {
-
+        document.addEventListener("keydown", (event) => {
+            console.log(event.key);
+            //majd a pos x-hez kell adni egyet
+            if (event.key === "w") {
+                let jatekos = this.#aktualisPalya.getJatekosok();
+                console.log(jatekos.getPos());
+                
+            }
+        })
     }
 
     #tamadasKezeles() {
@@ -28,7 +44,7 @@ class Jatekter {
     #targyDobas() {
 
     }
-    
+
     #ellensegMozgatas() {
         this.#ellensegek.forEach(ellenseg => {
             /* $(`#ellenseg-${ellenseg.getId()}`).remove(); */
