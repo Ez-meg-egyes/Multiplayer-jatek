@@ -6,7 +6,13 @@ class Jatekter {
     #jatekosok;
 
     constructor() {
-        new Palya(1, 2, [10, 8]);
+        const INDIT = $("#indit");
+        const MAIN = $("main");
+        INDIT.on("click", function () {
+            INDIT.css("display", "none");
+            MAIN.css("background-image", "none");
+            new Palya(1, 2, [10, 8]);
+        });
     }
 
     #mozgasKezeles() {
