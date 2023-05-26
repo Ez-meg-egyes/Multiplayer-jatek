@@ -20,13 +20,11 @@ class Palya {
         return this.#ellensegek;
     }
 
-    getJatekosok() {
-        return this.#jatekosok;
-    }
+
 
     init(palyaMeret, ellensegekSzama){
         this.palyaInit(palyaMeret);
-        this.jatekosInit();
+        this.jatekosInit(1, 1);
         this.ellensegInit(ellensegekSzama);
     }
 
@@ -82,9 +80,7 @@ class Palya {
         return i < karakterek.length;
     }
 
-    jatekosInit(){
-        let x = 1;
-        let y = 1;
+    jatekosInit(x, y){
         this.#jatekos = new Jatekos(0, 10, 2, [x, y], "./kepek/jatekos.gif", "Teszt", this.#palyaElemek[x][y].getDivElem());
     }
 
