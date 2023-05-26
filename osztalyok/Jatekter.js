@@ -8,7 +8,7 @@ class Jatekter {
     constructor() {
         const INDIT = $("#indit");
         const MAIN = $("main");
-        INDIT.on("click", function () {
+        INDIT.on("click", () => {
             INDIT.css("display", "none");
             MAIN.css("background-image", "none");
             this.#aktualisPalya = new Palya(1, 2, [10, 8]);
