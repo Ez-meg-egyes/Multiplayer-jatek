@@ -28,10 +28,20 @@ class Jatekter {
         document.addEventListener("keydown", (event) => {
             console.log(event.key);
             //majd a pos x-hez kell adni egyet
-            if (event.key === "w") {
-                let jatekos = this.#aktualisPalya.getJatekosok();
-                console.log(jatekos.getPos());
-                
+            let jatekos = this.#aktualisPalya.getJatekosok();
+            switch (event.key) {
+                case "w" || "W":
+                    jatekos.setPos([jatekos.getPos()[0], jatekos.getPos()[1] - 1]);
+                    break;
+                case "a" || "A":
+                    jatekos.setPos([jatekos.getPos()[0] - 1, jatekos.getPos()[1]]);
+                    break;
+                case "s" || "S":
+                    jatekos.setPos([jatekos.getPos()[0], jatekos.getPos()[1] + 1]);
+                    break;
+                case "d" || "D":
+                    jatekos.setPos([jatekos.getPos()[0] + 1 , jatekos.getPos()[1]]);
+                    break;
             }
         })
     }
