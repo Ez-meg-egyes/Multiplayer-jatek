@@ -6,6 +6,7 @@ class Palya {
     #palyaSzam;
     #ellensegek = [];
     #palyaElemek = [];
+    #jatekosok = [];
 
     constructor(palyaSzam, ellensegekSzama, palyaMeret) {
         this.#palyaSzam = palyaSzam;
@@ -14,6 +15,10 @@ class Palya {
 
     getEllensegek() {
         return this.#ellensegek;
+    }
+
+    getJatekosok() {
+        return this.#jatekosok;
     }
 
     init(palyaMeret, ellensegekSzama){
@@ -52,8 +57,7 @@ class Palya {
             do {
                 x = this.#randomSzam(0, this.#palyaElemek.length);
                 y = this.#randomSzam(0, this.#palyaElemek[0].length);
-                console.log(this.#palyaElemek[x][y].ralepheto());
-            } while (!this.#palyaElemek[x][y].ralepheto());
+            } while (!this.#palyaElemek[x][y].ralepheto() || this.#vanEKarakter(x, y));
 
             this.#ellensegek.push(new Ellenseg(i, 10, 2, [x, y], "kepek/ellenseg.gif", this.#palyaElemek[x][y].getDivElem()));
         }
@@ -61,6 +65,18 @@ class Palya {
 
     #randomSzam(min, max) {
         return Math.floor(Math.random() * max + min)
+    }
+    #vanEKarakter(x, y) {
+        let karakterek = this.#jatekosok.concat(this.#ellensegek);
+        if(karakterek.length === 0) {
+            return false;
+        }
+        let i = 0;
+        while (i < karakterek.length && !(karakterek[i].getX() == x && karakterek[i].getY() == y)) {
+            i++;
+        }
+
+        return i < karakterek.length;
     }
 
     jatekosInit(){
