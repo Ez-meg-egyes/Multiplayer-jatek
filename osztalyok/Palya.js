@@ -34,6 +34,15 @@ class Palya {
                 }
             }
         }
+        let blokadDB = 0;
+        while (blokadDB < 5) {
+            let x = Math.floor(Math.random() * 6 + 1);
+            let y = Math.floor(Math.random() * 8 + 1);
+            if (this.#palyaElemek[x][y].getTipus() == "talaj") {
+                this.#palyaElemek[x][y].setTipus("blokad");
+                blokadDB++;
+            }
+        }
     }
 
     ellensegInit(ellensegekSzama) {

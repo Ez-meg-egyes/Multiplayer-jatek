@@ -29,6 +29,15 @@ class PalyaElem {
         return this.#tipus;
     }
 
+    setTipus(tipus){
+        if (PALYA_TIPUSOK[tipus]) {
+            let regiTipus = this.#tipus;
+            this.#tipus = tipus;
+            this.#divElem.removeClass(regiTipus).addClass(tipus);
+            this.#kep = PALYA_TIPUSOK.tipus;
+        }
+    }
+
     ralepheto() {
         return this.#tipus === "talaj";
     }
