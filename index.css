@@ -16,8 +16,7 @@ main {
     justify-content: center;
     width: 100vw;
     max-width: 1000px;
-    height: 100vh;
-    max-height: 560px;
+    aspect-ratio: 100 / 56;
     background-color: grey;
     border: 2px solid black;
 }
@@ -60,7 +59,7 @@ main .oldalso {
     text-align: center;
 }
 
-@media screen and ((max-width: 1000px) or (max-height: 600px)) {
+@media screen and ((max-width: 500px) or (max-height: 280px)) {
     main {
         display: none;
     }
