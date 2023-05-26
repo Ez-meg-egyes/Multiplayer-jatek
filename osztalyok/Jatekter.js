@@ -31,13 +31,13 @@ class Jatekter {
             let jatekos = this.#aktualisPalya.getJatekosok();
             switch (event.key) {
                 case "w" || "W":
-                    jatekos.setPos([jatekos.getPos()[0] - 1, jatekos.getPos()[1]]);
-                    break;
-                case "a" || "A":
                     jatekos.setPos([jatekos.getPos()[0], jatekos.getPos()[1] - 1]);
                     break;
+                case "a" || "A":
+                    jatekos.setPos([jatekos.getPos()[0] - 1, jatekos.getPos()[1]]);
+                    break;
                 case "s" || "S":
-                    jatekos.setPos([jatekos.getPos()[0] , jatekos.getPos()[1]]);
+                    jatekos.setPos([jatekos.getPos()[0], jatekos.getPos()[1] + 1]);
                     break;
                 case "d" || "D":
                     jatekos.setPos([jatekos.getPos()[0] + 1 , jatekos.getPos()[1]]);
