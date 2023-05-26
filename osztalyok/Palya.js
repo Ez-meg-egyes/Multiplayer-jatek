@@ -7,6 +7,7 @@ class Palya {
     #ellensegek = [];
     #palyaElemek = [];
     #jatekosok = [];
+    #jatekos;
 
     constructor(palyaSzam, ellensegekSzama, palyaMeret) {
         this.#palyaSzam = palyaSzam;
