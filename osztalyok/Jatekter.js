@@ -5,7 +5,6 @@ class Jatekter {
     #aktualisPalya;
     #jatekosok;
     #ellensegek =[];
-    #palya;
 
     constructor() {
         const INDIT = $("#indit");
@@ -16,8 +15,8 @@ class Jatekter {
             this.#aktualisPalya = new Palya(1, 2, [10, 8]);
             this.#mozgasKezeles();
 
-            this.#jatekosok = this.#palya.getJatekosok();
-            this.#ellensegek = this.#palya.getEllensegek();
+            this.#jatekosok = this.#aktualisPalya.getJatekosok();
+            this.#ellensegek = this.#aktualisPalya.getEllensegek();
 
             setInterval(() => {
                 this.#ellensegMozgatas();
