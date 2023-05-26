@@ -1,24 +1,25 @@
 import PalyaElem from "./PalyaElem.js";
 import Jatekos from "./Jatekos.js";
+import Ellenseg from "./Ellenseg.js";
 class Palya {
 
     #palyaSzam;
     #ellensegek = [];
     #palyaElemek = [];
 
-    constructor(palyaSzam, ellensegek, palyaMeret) {
+    constructor(palyaSzam, ellensegekSzama, palyaMeret) {
         this.#palyaSzam = palyaSzam;
-        this.#ellensegek = ellensegek;
-        this.init(palyaMeret);
+        this.init(palyaMeret, ellensegekSzama);
     }
 
     getEllensegek() {
         return this.#ellensegek;
     }
 
-    init(palyaMeret){
+    init(palyaMeret, ellensegekSzama){
         this.palyaInit(palyaMeret);
         this.jatekosInit();
+        this.ellensegInit(ellensegekSzama);
     }
 
     palyaInit(palyaMeret){        
@@ -35,8 +36,22 @@ class Palya {
         }
     }
 
-    ellensegInit(){
+    ellensegInit(ellensegekSzama) {
+        for (let i = 0; i < ellensegekSzama; i++) {
+            let x, y;
 
+            do {
+                x = this.#randomSzam(0, this.#palyaElemek.length);
+                y = this.#randomSzam(0, this.#palyaElemek[0].length);
+                console.log(this.#palyaElemek[x][y].ralepheto());
+            } while (!this.#palyaElemek[x][y].ralepheto());
+
+            this.#ellensegek.push(new Ellenseg(i, 10, 2, [x, y], "kepek/ellenseg.gif", this.#palyaElemek[x][y].getDivElem()));
+        }
+    }
+
+    #randomSzam(min, max) {
+        return Math.floor(Math.random() * max + min)
     }
 
     jatekosInit(){
