@@ -53,6 +53,12 @@ main .oldalso {
     background-size: cover;
 }
 
+.blokad{
+    background-image: url("kepek/blokad.png");
+    background-position: center;
+    background-size: cover;
+}
+
 #nemTamogatott {
     display: none;
     width: 100vw;
