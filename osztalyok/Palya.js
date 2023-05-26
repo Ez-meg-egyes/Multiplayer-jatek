@@ -8,9 +8,11 @@ class Palya {
     #palyaElemek = [];
     #jatekosok = [];
     #jatekos;
+    #palyaMeret;
 
     constructor(palyaSzam, ellensegekSzama, palyaMeret) {
         this.#palyaSzam = palyaSzam;
+        this.#palyaMeret = palyaMeret;
         this.init(palyaMeret, ellensegekSzama);
     }
 
@@ -86,6 +88,14 @@ class Palya {
 
     getJatekosok() {
         return this.#jatekos;
+    }
+
+    getPalyaElem(x, y) {
+        return this.#palyaElemek[x][y];
+    }
+
+    getPalyaMeret() {
+
     }
     
 }

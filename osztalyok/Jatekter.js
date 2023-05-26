@@ -46,10 +46,27 @@ class Jatekter {
 
     #ellensegMozgatas() {
         this.#ellensegek.forEach(ellenseg => {
-            /* $(`#ellenseg-${ellenseg.getId()}`).remove(); */
-            console.log(ellenseg);
-            console.log(ellenseg.getPos());
+            $(`#ellenseg-${ellenseg.getId()}`).remove();
+
+            let palyaElem, ujPos, irany, mozgas;
+            let palyaMeret = this.#aktualisPalya;
+            do {
+                ujPos = ellenseg.getPos();
+                irany = this.#randomSzam(0, 1);
+                mozgas = this.#randomSzam(-1, 1);
+                ujPos[irany] += mozgas;
+
+                palyaElem = this.#aktualisPalya.getPalyaElem(ujPos[0], ujPos[1]);
+
+            } while((ujPos[0] > palyaMeret[0] || ujPos[1] > palyaMeret[1] || ujPos[0] < 0 || ujPos[1] < 0) || !palyaElem.ralepheto());
+
+            
+            ellenseg.htmlBeagyazas(palyaElem.getDivElem());
+            
         });
+    }
+    #randomSzam(min, max) {
+        return Math.floor(Math.random() * (max+1) + min);
     }
 
     #szintKezeles() {
