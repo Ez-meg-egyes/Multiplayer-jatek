@@ -10,6 +10,7 @@ class Jatekter {
         const INDIT = $("#indit");
         const MAIN = $("main");
         INDIT.on("click", () => {
+            document.getElementById("zene").play(); 
             INDIT.css("display", "none");
             MAIN.css("background-image", "none");
             this.#aktualisPalya = new Palya(1, 2, [10, 8]);
