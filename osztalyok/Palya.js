@@ -24,7 +24,7 @@ class Palya {
 
     init(palyaMeret, ellensegekSzama){
         this.palyaInit(palyaMeret);
-        this.jatekosInit(1, 1);
+        this.jatekosInit();
         this.ellensegInit(ellensegekSzama);
     }
 
@@ -80,12 +80,13 @@ class Palya {
         return i < karakterek.length;
     }
 
-    jatekosInit(x, y){
-        this.#jatekos = new Jatekos(0, 10, 2, [x, y], "./kepek/jatekos.gif", "Teszt", this.#palyaElemek[x][y].getDivElem());
+    jatekosInit(){
+        this.#jatekosok.push(new Jatekos(1, 10, 2, [1, 1], "./kepek/jatekos.gif", "Teszt", this.#palyaElemek[1][1].getDivElem()));
+        this.#jatekosok.push(new Jatekos(2, 10, 2, [1, 2], "./kepek/jatekos.gif", "Teszt", this.#palyaElemek[1][2].getDivElem()));
     }
 
     getJatekosok() {
-        return this.#jatekos;
+        return this.#jatekosok;
     }
 
     getPalyaElem(x, y) {

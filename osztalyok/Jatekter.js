@@ -28,25 +28,47 @@ class Jatekter {
 
     #mozgasKezeles() {
         document.addEventListener("keydown", (event) => {
-            let jatekos = this.#aktualisPalya.getJatekosok();
-            switch (event.key) {
-                case "w" || "W":
+            let jatekos = this.#aktualisPalya.getJatekosok()[0];
+            console.log(event.key.toLowerCase());
+            switch (event.key.toLowerCase()) {
+                case "w":
                     jatekos.setPos([jatekos.getPos()[0] - 1, jatekos.getPos()[1]]);
                     break;
-                case "a" || "A":
+                case "a":
                     jatekos.setPos([jatekos.getPos()[0], jatekos.getPos()[1] - 1]);
                     break;
-                case "s" || "S":
+                case "s":
                     jatekos.setPos([jatekos.getPos()[0] + 1, jatekos.getPos()[1]]);
                     break;
-                case "d" || "D":
+                case "d":
                     jatekos.setPos([jatekos.getPos()[0] , jatekos.getPos()[1] + 1]);
                     break;
             }
-            console.log("x:"+jatekos.getPos()[0] + ", y:"+jatekos.getPos()[1]);
-            $("#jatekos-0").remove();
+            console.log("P1 => x:"+jatekos.getPos()[0] + ", y:"+jatekos.getPos()[1]);
+            $("#jatekos-1").remove();
             let aktualisPalyaElem = this.#aktualisPalya.getPalyaElem(jatekos.getPos()[0], jatekos.getPos()[1]).getDivElem();
-            aktualisPalyaElem.append(`<div id="jatekos-0" class="karakter"></div>`)
+            aktualisPalyaElem.append(`<div id="jatekos-1" class="karakter"></div>`)
+        })
+        document.addEventListener("keydown", (event) => {
+            let jatekos = this.#aktualisPalya.getJatekosok()[1];
+            switch (event.key) {
+                case "ArrowUp":
+                    jatekos.setPos([jatekos.getPos()[0] - 1, jatekos.getPos()[1]]);
+                    break;
+                case "ArrowLeft":
+                    jatekos.setPos([jatekos.getPos()[0], jatekos.getPos()[1] - 1]);
+                    break;
+                case "ArrowDown":
+                    jatekos.setPos([jatekos.getPos()[0] + 1, jatekos.getPos()[1]]);
+                    break;
+                case "ArrowRight":
+                    jatekos.setPos([jatekos.getPos()[0] , jatekos.getPos()[1] + 1]);
+                    break;
+            }
+            console.log("P2 => x:"+jatekos.getPos()[0] + ", y:"+jatekos.getPos()[1]);
+            $("#jatekos-2").remove();
+            let aktualisPalyaElem = this.#aktualisPalya.getPalyaElem(jatekos.getPos()[0], jatekos.getPos()[1]).getDivElem();
+            aktualisPalyaElem.append(`<div id="jatekos-2" class="karakter"></div>`)
         })
     }
 
