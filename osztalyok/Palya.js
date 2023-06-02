@@ -65,7 +65,7 @@ class Palya {
     }
 
     #randomSzam(min, max) {
-        return Math.floor(Math.random() * max + min)
+        return Math.floor(Math.random() * (max + 1) + min);
     }
     #vanEKarakter(x, y) {
         let karakterek = this.#jatekosok.concat(this.#ellensegek);
@@ -90,6 +90,7 @@ class Palya {
     }
 
     getPalyaElem(x, y) {
+        if (x > this.#palyaMeret[0] || y > this.#palyaMeret[1] || x < 0 || y < 0) {return false;}
         return this.#palyaElemek[x][y];
     }
 
