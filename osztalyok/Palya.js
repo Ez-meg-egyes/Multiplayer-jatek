@@ -21,7 +21,6 @@ class Palya {
     }
 
     ralepheto(x, y) {
-        console.log(x, y);
         if (this.#palyaElemek[x][y].getTipus() === "talaj" && !this.#vanEKarakter(x, y)) {
             return true;
         }else{

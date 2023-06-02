@@ -15,7 +15,7 @@ class Jatekter {
             $("#jatekTer").focus();
             INDIT.css("display", "none");
             MAIN.css("background-image", "none");
-            this.#aktualisPalya = new Palya(1, 2, [10, 8]);
+            this.#aktualisPalya = new Palya(1, 1, [10, 8]);
             this.#scrollblock();
             this.#mozgasKezeles();
 
@@ -87,31 +87,37 @@ class Jatekter {
 
     #ellensegMozgatas() {
         this.#ellensegek.forEach(ellenseg => {
-            $(`#ellenseg-${ellenseg.getId()}`).remove();
-
-            let palyaElem, ujPos, irany, mozgas;
-            const regiPos = ellenseg.getPos();
+            
+            let palyaElem, ujPos, irany, mozgas, lepheto;
+            const REGI_POS = ellenseg.getPos();
+            let rosszIranyok = [];
             do {
-                ujPos = regiPos.slice();
+                ujPos = REGI_POS.slice();
                 irany = this.#randomSzam(0, 1);
                 mozgas = this.#randomSzam(-1, 1);
                 ujPos[irany] += mozgas;
-                if (mozgas == 1) {
-                    console.log(irany, "=>", mozgas);
-                }
                 
                 palyaElem = this.#aktualisPalya.getPalyaElem(ujPos[0], ujPos[1]);
-
-            } while(!(palyaElem && this.#aktualisPalya.ralepheto(ujPos[0], ujPos[1])));
-
-            ellenseg.setPos(ujPos);
+                lepheto = palyaElem ? this.#aktualisPalya.ralepheto(ujPos[0], ujPos[1]) : false;
+                console.log(palyaElem, "=>" , lepheto);
+                
+                let mozog = `${irany}#${mozgas}`;
+                if (!lepheto && !rosszIranyok.includes(mozog)) {
+                    rosszIranyok.push(mozog);
+                }
+                console.log(rosszIranyok);
+                
+            } while(rosszIranyok.length < 4 && !lepheto); 
             
-            ellenseg.htmlBeagyazas(palyaElem.getDivElem());
-            
+            if (rosszIranyok.length < 4) {
+                $(`#ellenseg-${ellenseg.getId()}`).remove();
+                ellenseg.setPos(ujPos);
+                ellenseg.htmlBeagyazas(palyaElem.getDivElem());
+            }
         });
     }
     #randomSzam(min, max) {
-        return Math.round(Math.random() * (max + 1) + min);
+        return Math.round((Math.random() * (max - min)) + min);
     }
 
     #scrollblock() {
