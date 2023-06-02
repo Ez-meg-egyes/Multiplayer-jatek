@@ -56,18 +56,24 @@ class Jatekter {
             }else if(key == 39){
                 P2offsety += 1;
             }
-            let jatekos = jatekosok[0];
-            jatekos.setPos([jatekos.getX() + P1offsetx, jatekos.getY() + P1offsety]);
-            $("#jatekos-1").remove();
-            let aktualisPalyaElem = this.#aktualisPalya.getPalyaElem(jatekos.getPos()[0], jatekos.getPos()[1]).getDivElem();
-            jatekos.htmlBeagyazas(aktualisPalyaElem);
+            let jatekos = this.#jatekosok[0];
+            if (this.#aktualisPalya.ralepheto(jatekos.getX() + P1offsetx, jatekos.getY() + P1offsety)) {
+                
+                jatekos.setPos([jatekos.getX() + P1offsetx, jatekos.getY() + P1offsety]);
+                $("#jatekos-1").remove();
+                let aktualisPalyaElem1 = this.#aktualisPalya.getPalyaElem(jatekos.getPos()[0], jatekos.getPos()[1]).getDivElem();
+                jatekos.htmlBeagyazas(aktualisPalyaElem1);
+                
+            } 
+            let jatekos2 = jatekosok[1];
+            if (this.#aktualisPalya.ralepheto(jatekos2.getX() + P2offsetx, jatekos2.getY() + P2offsety)) {
+                
+                jatekos2.setPos([jatekos2.getX() + P2offsetx, jatekos2.getY() + P2offsety]);
+                $("#jatekos-2").remove();
+                let aktualisPalyaElem2 = this.#aktualisPalya.getPalyaElem(jatekos2.getPos()[0], jatekos2.getPos()[1]).getDivElem();
+                jatekos2.htmlBeagyazas(aktualisPalyaElem2);
+            }
             
-            
-            jatekos = jatekosok[1];
-            jatekos.setPos([jatekos.getX() + P2offsetx, jatekos.getY() + P2offsety]);
-            $("#jatekos-2").remove();
-            aktualisPalyaElem = this.#aktualisPalya.getPalyaElem(jatekos.getPos()[0], jatekos.getPos()[1]).getDivElem();
-            jatekos.htmlBeagyazas(aktualisPalyaElem);
         });
     }
 
