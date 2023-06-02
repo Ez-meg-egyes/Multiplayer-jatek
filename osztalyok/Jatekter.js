@@ -135,13 +135,13 @@ class Jatekter {
 
     #ellensegEletLevonas(id) {
         let e = this.#ellensegek[id];
-        if (this.#ellensegek[id].getEletero() > 0) {
+        if (e && e.getEletero() > 0) {
             console.log("eletero " + e.getEletero());
             e.setEletero(e.getEletero() - this.#jatekosok[0].getSebzes());
             console.log("megmaradt eletero: " + e.getEletero());
         } else {
-            $(`#ellenseg-${this.#ellensegek[id].getId()}`).remove();
-            console.log("meghalt: ellenseg-" + this.#ellensegek[id].getId());
+            $(`#ellenseg-${e.getId()}`).remove();
+            console.log("meghalt: ellenseg-" + e.getId());
             this.#ellensegek.splice(id);
         }
     }
