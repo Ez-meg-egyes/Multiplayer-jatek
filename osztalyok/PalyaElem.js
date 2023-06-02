@@ -38,9 +38,7 @@ class PalyaElem {
         }
     }
 
-    ralepheto() {
-        return this.#tipus === "talaj";
-    }
+    
 
     getTargy() {
         return this.#targy;

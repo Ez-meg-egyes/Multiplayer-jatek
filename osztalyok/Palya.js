@@ -20,7 +20,13 @@ class Palya {
         return this.#ellensegek;
     }
 
-
+    ralepheto(x, y) {
+        if (!(this.#palyaElemek[x][y].getTipus() === "talaj" || this.#vanEKarakter(x, y) === false)) {
+            return false;
+        }else{
+            return true;
+        }      
+    }
 
     init(palyaMeret, ellensegekSzama){
         this.palyaInit(palyaMeret);
