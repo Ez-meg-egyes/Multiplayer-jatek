@@ -96,7 +96,7 @@ class Jatekter {
                 
                 palyaElem = this.#aktualisPalya.getPalyaElem(ujPos[0], ujPos[1]);
 
-            } while(!(palyaElem && palyaElem.ralepheto()));
+            } while(!(palyaElem && this.#aktualisPalya.ralepheto(ujPos[0], ujPos[1])));
 
             ellenseg.setPos(ujPos);
             

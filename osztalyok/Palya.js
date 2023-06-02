@@ -21,10 +21,11 @@ class Palya {
     }
 
     ralepheto(x, y) {
-        if (!(this.#palyaElemek[x][y].getTipus() === "talaj" || this.#vanEKarakter(x, y) === false)) {
-            return false;
-        }else{
+        console.log(x, y);
+        if (this.#palyaElemek[x][y].getTipus() === "talaj" && !this.#vanEKarakter(x, y)) {
             return true;
+        }else{
+            return false;
         }      
     }
 
@@ -62,9 +63,10 @@ class Palya {
             let x, y;
 
             do {
-                x = this.#randomSzam(0, this.#palyaElemek.length);
-                y = this.#randomSzam(0, this.#palyaElemek[0].length);
-            } while (!this.#palyaElemek[x][y].ralepheto() || this.#vanEKarakter(x, y));
+                x = this.#randomSzam(0, this.#palyaElemek.length - 1);
+                y = this.#randomSzam(0, this.#palyaElemek[0].length - 1);
+                console.log(x, y);
+            } while (!(this.getPalyaElem(x, y) && this.ralepheto(x, y)));
 
             this.#ellensegek.push(new Ellenseg(i, 10, 2, [x, y], "kepek/ellenseg.gif", this.#palyaElemek[x][y].getDivElem()));
         }
