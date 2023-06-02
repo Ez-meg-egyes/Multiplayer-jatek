@@ -107,7 +107,7 @@ class Jatekter {
         });
         $("#jatekTer").on("keydown", (event) => {
             let jatekos = this.#aktualisPalya.getJatekosok()[1];
-            if (event.keyCode === 17) {
+            if (event.code === "ControlRight") {
                 $("#jatekos-2").css('background-image', 'url("kepek/harc.gif")');
                 for (let index = 0; index < this.#ellensegek.length; index++) {
                     if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] + 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
