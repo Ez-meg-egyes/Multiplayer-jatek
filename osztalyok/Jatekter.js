@@ -164,13 +164,11 @@ class Jatekter {
                 
                 palyaElem = this.#aktualisPalya.getPalyaElem(ujPos[0], ujPos[1]);
                 lepheto = palyaElem ? this.#aktualisPalya.ralepheto(ujPos[0], ujPos[1]) : false;
-                console.log(palyaElem, "=>" , lepheto);
                 
                 let mozog = `${irany}#${mozgas}`;
                 if (!lepheto && !rosszIranyok.includes(mozog)) {
                     rosszIranyok.push(mozog);
                 }
-                console.log(rosszIranyok);
                 
             } while(rosszIranyok.length < 4 && !lepheto); 
             
