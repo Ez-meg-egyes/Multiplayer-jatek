@@ -10,7 +10,7 @@ class Jatekter {
         const INDIT = $("#indit");
         const MAIN = $("main");
         INDIT.on("click", () => {
-            document.getElementById("zene").play(); 
+            $("#zene").play(); 
             INDIT.css("display", "none");
             MAIN.css("background-image", "none");
             this.#aktualisPalya = new Palya(1, 2, [10, 8]);
@@ -27,20 +27,21 @@ class Jatekter {
     }
 
     #mozgasKezeles() {
-        document.addEventListener("keydown", (event) => {
+        $("#jatekTer").on("keydown", (event) => {
             let jatekos = this.#aktualisPalya.getJatekosok()[0];
-            console.log(event.key.toLowerCase());
-            switch (event.key.toLowerCase()) {
-                case "w":
+            /* console.log(event.key.toLowerCase()); */
+            console.log(event.keyCode);
+            switch (event.keyCode) {
+                case 87:
                     jatekos.setPos([jatekos.getPos()[0] - 1, jatekos.getPos()[1]]);
                     break;
-                case "a":
+                case 65:
                     jatekos.setPos([jatekos.getPos()[0], jatekos.getPos()[1] - 1]);
                     break;
-                case "s":
+                case 83:
                     jatekos.setPos([jatekos.getPos()[0] + 1, jatekos.getPos()[1]]);
                     break;
-                case "d":
+                case 68:
                     jatekos.setPos([jatekos.getPos()[0] , jatekos.getPos()[1] + 1]);
                     break;
             }
@@ -48,20 +49,21 @@ class Jatekter {
             $("#jatekos-1").remove();
             let aktualisPalyaElem = this.#aktualisPalya.getPalyaElem(jatekos.getPos()[0], jatekos.getPos()[1]).getDivElem();
             aktualisPalyaElem.append(`<div id="jatekos-1" class="karakter"></div>`)
-        })
-        document.addEventListener("keydown", (event) => {
+        });
+
+        $("#jatekTer").on("keydown", (event) => {
             let jatekos = this.#aktualisPalya.getJatekosok()[1];
-            switch (event.key) {
-                case "ArrowUp":
+            switch (event.keyCode) {
+                case 38:
                     jatekos.setPos([jatekos.getPos()[0] - 1, jatekos.getPos()[1]]);
                     break;
-                case "ArrowLeft":
+                case 37:
                     jatekos.setPos([jatekos.getPos()[0], jatekos.getPos()[1] - 1]);
                     break;
-                case "ArrowDown":
+                case 40:
                     jatekos.setPos([jatekos.getPos()[0] + 1, jatekos.getPos()[1]]);
                     break;
-                case "ArrowRight":
+                case 39:
                     jatekos.setPos([jatekos.getPos()[0] , jatekos.getPos()[1] + 1]);
                     break;
             }
@@ -69,7 +71,7 @@ class Jatekter {
             $("#jatekos-2").remove();
             let aktualisPalyaElem = this.#aktualisPalya.getPalyaElem(jatekos.getPos()[0], jatekos.getPos()[1]).getDivElem();
             aktualisPalyaElem.append(`<div id="jatekos-2" class="karakter"></div>`)
-        })
+        });
     }
 
     #tamadasKezeles() {
