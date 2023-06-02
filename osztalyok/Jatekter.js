@@ -11,6 +11,7 @@ class Jatekter {
         const MAIN = $("main");
         INDIT.on("click", () => {
             $("#zene").play;
+            $("#jatekTer").focus();
             INDIT.css("display", "none");
             MAIN.css("background-image", "none");
             this.#aktualisPalya = new Palya(1, 2, [10, 8]);
