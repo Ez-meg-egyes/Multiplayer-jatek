@@ -15,7 +15,7 @@ class Jatekter {
             $("#jatekTer").focus();
             INDIT.css("display", "none");
             MAIN.css("background-image", "none");
-            this.#aktualisPalya = new Palya(1, 1, [10, 8]);
+            this.#aktualisPalya = new Palya(1, 2, [10, 8]);
             this.#scrollblock();
             this.#mozgasKezeles();
             this.#tamadasKezeles();
