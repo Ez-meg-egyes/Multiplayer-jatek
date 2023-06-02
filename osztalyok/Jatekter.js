@@ -1,4 +1,5 @@
 import Palya from "./Palya.js";
+import PalyaElem from "./PalyaElem.js";
 
 class Jatekter {
 
@@ -31,49 +32,49 @@ class Jatekter {
 
     #mozgasKezeles() {
         $("#jatekTer").on("keydown", (event) => {
-            let jatekos = this.#aktualisPalya.getJatekosok()[0];
-            /* console.log(event.key.toLowerCase()); */
-            console.log(event.keyCode);
-            switch (event.keyCode) {
-                case 87:
-                    jatekos.setPos([jatekos.getPos()[0] - 1, jatekos.getPos()[1]]);
-                    break;
-                case 65:
-                    jatekos.setPos([jatekos.getPos()[0], jatekos.getPos()[1] - 1]);
-                    break;
-                case 83:
-                    jatekos.setPos([jatekos.getPos()[0] + 1, jatekos.getPos()[1]]);
-                    break;
-                case 68:
-                    jatekos.setPos([jatekos.getPos()[0] , jatekos.getPos()[1] + 1]);
-                    break;
+            let jatekosok = this.#aktualisPalya.getJatekosok();
+            let key = event.keyCode;
+            let P1offsetx = 0;
+            let P1offsety = 0;
+            let P2offsetx = 0;
+            let P2offsety = 0;
+            if(key == 87){
+                P1offsetx -= 1;
+            } else if(key == 65){
+                P1offsety -= 1;
+            }else if(key == 83){
+                P1offsetx += 1;
+            }else if(key == 68){
+                P1offsety += 1;
             }
-            console.log("P1 => x:"+jatekos.getPos()[0] + ", y:"+jatekos.getPos()[1]);
-            $("#jatekos-1").remove();
-            let aktualisPalyaElem = this.#aktualisPalya.getPalyaElem(jatekos.getPos()[0], jatekos.getPos()[1]).getDivElem();
-            aktualisPalyaElem.append(`<div id="jatekos-1" class="karakter"></div>`)
-        });
 
-        $("#jatekTer").on("keydown", (event) => {
-            let jatekos = this.#aktualisPalya.getJatekosok()[1];
-            switch (event.keyCode) {
-                case 38:
-                    jatekos.setPos([jatekos.getPos()[0] - 1, jatekos.getPos()[1]]);
-                    break;
-                case 37:
-                    jatekos.setPos([jatekos.getPos()[0], jatekos.getPos()[1] - 1]);
-                    break;
-                case 40:
-                    jatekos.setPos([jatekos.getPos()[0] + 1, jatekos.getPos()[1]]);
-                    break;
-                case 39:
-                    jatekos.setPos([jatekos.getPos()[0] , jatekos.getPos()[1] + 1]);
-                    break;
+            if(key == 38){
+                P2offsetx -= 1;
+            } else if(key == 37){
+                P2offsety -= 1;
+            }else if(key == 40){
+                P2offsetx += 1;
+            }else if(key == 39){
+                P2offsety += 1;
             }
-            console.log("P2 => x:"+jatekos.getPos()[0] + ", y:"+jatekos.getPos()[1]);
-            $("#jatekos-2").remove();
-            let aktualisPalyaElem = this.#aktualisPalya.getPalyaElem(jatekos.getPos()[0], jatekos.getPos()[1]).getDivElem();
-            aktualisPalyaElem.append(`<div id="jatekos-2" class="karakter"></div>`)
+            let jatekos = this.#jatekosok[0];
+            if (this.#aktualisPalya.ralepheto(jatekos.getX() + P1offsetx, jatekos.getY() + P1offsety)) {
+                
+                jatekos.setPos([jatekos.getX() + P1offsetx, jatekos.getY() + P1offsety]);
+                $("#jatekos-1").remove();
+                let aktualisPalyaElem1 = this.#aktualisPalya.getPalyaElem(jatekos.getPos()[0], jatekos.getPos()[1]).getDivElem();
+                jatekos.htmlBeagyazas(aktualisPalyaElem1);
+                
+            } 
+            let jatekos2 = jatekosok[1];
+            if (this.#aktualisPalya.ralepheto(jatekos2.getX() + P2offsetx, jatekos2.getY() + P2offsety)) {
+                
+                jatekos2.setPos([jatekos2.getX() + P2offsetx, jatekos2.getY() + P2offsety]);
+                $("#jatekos-2").remove();
+                let aktualisPalyaElem2 = this.#aktualisPalya.getPalyaElem(jatekos2.getPos()[0], jatekos2.getPos()[1]).getDivElem();
+                jatekos2.htmlBeagyazas(aktualisPalyaElem2);
+            }
+            
         });
     }
 
@@ -154,24 +155,28 @@ class Jatekter {
             $(`#ellenseg-${ellenseg.getId()}`).remove();
 
             let palyaElem, ujPos, irany, mozgas;
-            let palyaMeret = this.#aktualisPalya;
+            const regiPos = ellenseg.getPos();
             do {
-                ujPos = ellenseg.getPos();
+                ujPos = regiPos.slice();
                 irany = this.#randomSzam(0, 1);
                 mozgas = this.#randomSzam(-1, 1);
                 ujPos[irany] += mozgas;
-
+                if (mozgas == 1) {
+                    console.log(irany, "=>", mozgas);
+                }
+                
                 palyaElem = this.#aktualisPalya.getPalyaElem(ujPos[0], ujPos[1]);
 
-            } while((ujPos[0] > palyaMeret[0] || ujPos[1] > palyaMeret[1] || ujPos[0] < 0 || ujPos[1] < 0) || !palyaElem.ralepheto());
+            } while(!(palyaElem && this.#aktualisPalya.ralepheto(ujPos[0], ujPos[1])));
 
+            ellenseg.setPos(ujPos);
             
             ellenseg.htmlBeagyazas(palyaElem.getDivElem());
             
         });
     }
     #randomSzam(min, max) {
-        return Math.floor(Math.random() * (max+1) + min);
+        return Math.round(Math.random() * (max + 1) + min);
     }
 
     #scrollblock() {
