@@ -15,6 +15,7 @@ class Jatekter {
             INDIT.css("display", "none");
             MAIN.css("background-image", "none");
             this.#aktualisPalya = new Palya(1, 2, [10, 8]);
+            this.#scrollblock();
             this.#mozgasKezeles();
 
             this.#jatekosok = this.#aktualisPalya.getJatekosok();
@@ -106,6 +107,15 @@ class Jatekter {
     }
     #randomSzam(min, max) {
         return Math.floor(Math.random() * (max+1) + min);
+    }
+
+    #scrollblock() {
+        $(window).on(
+          "keydown",
+          function (e) {
+            if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
+              e.preventDefault();}
+            },false);
     }
 
     #szintKezeles() {
