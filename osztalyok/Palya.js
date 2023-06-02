@@ -60,13 +60,9 @@ class Palya {
 
     ellensegInit(ellensegekSzama) {
         for (let i = 0; i < ellensegekSzama; i++) {
-            let x, y;
-
-            do {
-                x = this.#randomSzam(0, this.#palyaElemek.length - 1);
-                y = this.#randomSzam(0, this.#palyaElemek[0].length - 1);
-                console.log(x, y);
-            } while (!(this.getPalyaElem(x, y) && this.ralepheto(x, y)));
+            let hely = this.getRandomHely();
+            let x = hely[0];
+            let y = hely[1];
 
             this.#ellensegek.push(new Ellenseg(i, 10, 2, [x, y], "kepek/ellenseg.gif", this.#palyaElemek[x][y].getDivElem()));
         }
@@ -89,8 +85,14 @@ class Palya {
     }
 
     jatekosInit(){
-        this.#jatekosok.push(new Jatekos(1, 10, 2, [1, 1], "./kepek/jatekos.gif", "Teszt", this.#palyaElemek[1][1].getDivElem()));
-        this.#jatekosok.push(new Jatekos(2, 10, 2, [1, 2], "./kepek/jatekos.gif", "Teszt", this.#palyaElemek[1][2].getDivElem()));
+        let hely = this.getRandomHely();
+        let x = hely[0];
+        let y = hely[1];
+        this.#jatekosok.push(new Jatekos(1, 10, 2, [x, y], "./kepek/jatekos.gif", "Teszt", this.#palyaElemek[x][y].getDivElem()));
+        hely = this.getRandomHely();
+        x = hely[0];
+        y = hely[1];
+        this.#jatekosok.push(new Jatekos(2, 10, 2, [x, y], "./kepek/jatekos.gif", "Teszt", this.#palyaElemek[x][y].getDivElem()));
     }
 
     getJatekosok() {
@@ -106,6 +108,14 @@ class Palya {
 
     }
     
+    getRandomHely(){
+        let x, y;
+        do {
+            x = this.#randomSzam(0, this.#palyaElemek.length - 1);
+            y = this.#randomSzam(0, this.#palyaElemek[0].length - 1);
+        } while (!(this.getPalyaElem(x, y) && this.ralepheto(x, y)));
+        return [x, y];
+    }
 }
 
 export default Palya;
