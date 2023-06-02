@@ -17,6 +17,7 @@ class Jatekter {
             this.#aktualisPalya = new Palya(1, 2, [10, 8]);
             this.#scrollblock();
             this.#mozgasKezeles();
+            this.#tamadasKezeles();
 
             this.#jatekosok = this.#aktualisPalya.getJatekosok();
             this.#ellensegek = this.#aktualisPalya.getEllensegek();
@@ -77,7 +78,71 @@ class Jatekter {
     }
 
     #tamadasKezeles() {
+        $("#jatekTer").on("keydown", (event) => {
+            let jatekos = this.#aktualisPalya.getJatekosok()[0];
+            if (event.keyCode === 32) {
+                $("#jatekos-1").css('background-image', 'url("kepek/harc.gif")');
+                for (let index = 0; index < this.#ellensegek.length; index++) {
+                    if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] + 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
+                        this.#ellensegEletLevonas(index);
+                    }
+                }
+                for (let index = 0; index < this.#ellensegek.length; index++) {
+                    if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] - 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
+                        this.#ellensegEletLevonas(index);
+                    }
+                }
+                for (let index = 0; index < this.#ellensegek.length; index++) {
+                    if (this.#ellensegek[index].getPos()[1] === jatekos.getPos()[1] && this.#ellensegek[index].getPos()[0] === (jatekos.getPos()[0] + 1)) {
+                        this.#ellensegEletLevonas(index);
+                    }
+                }
+                for (let index = 0; index < this.#ellensegek.length; index++) {
+                    if (this.#ellensegek[index].getPos()[1] === jatekos.getPos()[1] && this.#ellensegek[index].getPos()[0] === (jatekos.getPos()[0] - 1)) {
+                        this.#ellensegEletLevonas(index);
+                    }
+                }
+            }
+        });
+        $("#jatekTer").on("keydown", (event) => {
+            let jatekos = this.#aktualisPalya.getJatekosok()[1];
+            if (event.keyCode === 17) {
+                $("#jatekos-2").css('background-image', 'url("kepek/harc.gif")');
+                for (let index = 0; index < this.#ellensegek.length; index++) {
+                    if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] + 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
+                        this.#ellensegEletLevonas(index);
+                    }
+                }
+                for (let index = 0; index < this.#ellensegek.length; index++) {
+                    if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] - 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
+                        this.#ellensegEletLevonas(index);
+                    }
+                }
+                for (let index = 0; index < this.#ellensegek.length; index++) {
+                    if (this.#ellensegek[index].getPos()[1] === jatekos.getPos()[1] && this.#ellensegek[index].getPos()[0] === (jatekos.getPos()[0] + 1)) {
+                        this.#ellensegEletLevonas(index);
+                    }
+                }
+                for (let index = 0; index < this.#ellensegek.length; index++) {
+                    if (this.#ellensegek[index].getPos()[1] === jatekos.getPos()[1] && this.#ellensegek[index].getPos()[0] === (jatekos.getPos()[0] - 1)) {
+                        this.#ellensegEletLevonas(index);
+                    }
+                }
+            }
+        });
+    }
 
+    #ellensegEletLevonas(id) {
+        let e = this.#ellensegek[id];
+        if (this.#ellensegek[id].getEletero() > 0) {
+            console.log("eletero " + e.getEletero());
+            e.setEletero(e.getEletero() - this.#jatekosok[0].getSebzes());
+            console.log("megmaradt eletero: " + e.getEletero());
+        } else {
+            $(`#ellenseg-${this.#ellensegek[id].getId()}`).remove();
+            console.log("meghalt: ellenseg-" + this.#ellensegek[id].getId());
+            this.#ellensegek.splice(id);
+        }
     }
 
     #targyDobas() {
