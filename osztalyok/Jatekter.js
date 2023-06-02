@@ -1,4 +1,5 @@
 import Palya from "./Palya.js";
+import PalyaElem from "./PalyaElem.js";
 
 class Jatekter {
 
@@ -83,24 +84,28 @@ class Jatekter {
             $(`#ellenseg-${ellenseg.getId()}`).remove();
 
             let palyaElem, ujPos, irany, mozgas;
-            let palyaMeret = this.#aktualisPalya;
+            const regiPos = ellenseg.getPos();
             do {
-                ujPos = ellenseg.getPos();
+                ujPos = regiPos.slice();
                 irany = this.#randomSzam(0, 1);
                 mozgas = this.#randomSzam(-1, 1);
                 ujPos[irany] += mozgas;
-
+                if (mozgas == 1) {
+                    console.log(irany, "=>", mozgas);
+                }
+                
                 palyaElem = this.#aktualisPalya.getPalyaElem(ujPos[0], ujPos[1]);
 
-            } while((ujPos[0] > palyaMeret[0] || ujPos[1] > palyaMeret[1] || ujPos[0] < 0 || ujPos[1] < 0) || !palyaElem.ralepheto());
+            } while(!(palyaElem && palyaElem.ralepheto()));
 
+            ellenseg.setPos(ujPos);
             
             ellenseg.htmlBeagyazas(palyaElem.getDivElem());
             
         });
     }
     #randomSzam(min, max) {
-        return Math.floor(Math.random() * (max+1) + min);
+        return Math.round(Math.random() * (max + 1) + min);
     }
 
     #scrollblock() {

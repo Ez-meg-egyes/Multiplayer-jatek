@@ -27,7 +27,7 @@ class Karakter {
     }
 
     getPos() {
-        return this.#pos;
+        return this.#pos.slice();
     }
 
     getX() {

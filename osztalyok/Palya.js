@@ -20,7 +20,13 @@ class Palya {
         return this.#ellensegek;
     }
 
-
+    ralepheto(x, y) {
+        if (!(this.#palyaElemek[x][y].getTipus() === "talaj" || this.#vanEKarakter(x, y) === false)) {
+            return false;
+        }else{
+            return true;
+        }      
+    }
 
     init(palyaMeret, ellensegekSzama){
         this.palyaInit(palyaMeret);
@@ -65,7 +71,7 @@ class Palya {
     }
 
     #randomSzam(min, max) {
-        return Math.floor(Math.random() * max + min)
+        return Math.floor(Math.random() * (max + 1) + min);
     }
     #vanEKarakter(x, y) {
         let karakterek = this.#jatekosok.concat(this.#ellensegek);
@@ -90,6 +96,7 @@ class Palya {
     }
 
     getPalyaElem(x, y) {
+        if (x > this.#palyaMeret[0] || y > this.#palyaMeret[1] || x < 0 || y < 0) {return false;}
         return this.#palyaElemek[x][y];
     }
 
