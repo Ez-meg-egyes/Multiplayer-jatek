@@ -142,7 +142,7 @@ class Jatekter {
         } else {
             $(`#ellenseg-${e.getId()}`).remove();
             console.log("meghalt: ellenseg-" + e.getId());
-            this.#ellensegek.splice(id);
+            this.#ellensegek.splice(id,1);
         }
     }
 
