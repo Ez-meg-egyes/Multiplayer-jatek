@@ -1,5 +1,6 @@
 import Palya from "./Palya.js";
 import PalyaElem from "./PalyaElem.js";
+import PALINDROMOK from "../palindromok.js";
 
 class Jatekter {
 
@@ -279,25 +280,15 @@ class Jatekter {
 
     #modal(){
         if(this.#ellensegek.length == 0 || (this.#jatekosok[0].getEletero() <= 0 && this.#jatekosok[1].getEletero() <= 0)){
-            let palindromok = [];
             $("#myModal").css("display","block");
+            let id = this.#randomSzam(0, PALINDROMOK.length);
+
             if (this.#ellensegek.length == 0) {
                 $("#myModal #nyert").html("A játékosok nyertek");
             } else{
                 $("#myModal #nyert").html("Az ellenségek nyertek");
             }
-            fetch('./palindromok.json')
-                .then((response) => response.json())
-                .then((json) => {
-                    palindromok = json
-                    let id = this.#randomSzam(0, palindromok.length);
-                    $("#myModal #pali").html(palindromok[id]);
-
-                })
-                .catch((err) => {
-                    $("#myModal #pali").html("Nincs palindrom ☹");
-                    
-                })
+            $("#myModal #pali").html(PALINDROMOK[id]);
 
         }
     }
