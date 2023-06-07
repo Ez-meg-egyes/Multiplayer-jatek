@@ -26,7 +26,7 @@ class Jatekter {
                 this.#ellensegMozgatas();
             }, 1000);
         });
-        
+        modal();
     }
 
     #mozgasKezeles() {
@@ -217,6 +217,11 @@ class Jatekter {
 
     }
 
+    modal(){
+        if(this.#ellensegek == [] || (this.#jatekosok[0].getEletero <= 0 && this.#jatekosok[1].getEletero <= 0)){
+            $("#myModal").css("display","block");
+        }
+    }
 }
 
 export default Jatekter;
