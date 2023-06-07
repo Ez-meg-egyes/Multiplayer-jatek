@@ -27,7 +27,6 @@ class Jatekter {
                 this.#ellensegTamadasKezeles();
             }, 1500);
         });
-        modal();
     }
 
     #mozgasKezeles() {
@@ -171,6 +170,7 @@ class Jatekter {
             console.log("meghalt: ellenseg-" + e.getId());
             this.#ellensegek.splice(id,1);
         }
+        this.#modal();
     }
 
     #targyDobas() {
@@ -220,7 +220,7 @@ class Jatekter {
                     }
                     
                 }
-
+                this.#modal();
                 setTimeout(() => {
                     $(`#ellenseg-${ellenseg.getId()}`).css('background-image', 'url("kepek/ellenseg.gif")');
                 }, 1450);
@@ -245,9 +245,14 @@ class Jatekter {
 
     }
 
-    modal(){
-        if(this.#ellensegek == [] || (this.#jatekosok[0].getEletero <= 0 && this.#jatekosok[1].getEletero <= 0)){
+    #modal(){
+        if(this.#ellensegek.length == 0 || (this.#jatekosok[0].getEletero() <= 0 && this.#jatekosok[1].getEletero() <= 0)){
             $("#myModal").css("display","block");
+            if (this.#ellensegek.length == 0) {
+                $("#myModal p").html("A játékosok nyertek");
+            } else{
+                $("#myModal p").html("Az ellenségek nyertek");
+            }
         }
     }
 }

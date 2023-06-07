@@ -159,24 +159,26 @@ footer a:hover{
 .modal {
     display: none;
     position: fixed;
-    z-index: 1; /* Legfelső réteg */
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Fekete háttér, átlátszó */
+    background-color: rgba(0, 0, 0, 0.4);
   }
 
-  /* Stílusok a modális tartalomhoz */
   .modal-content {
-    background-color: #fefefe;
+    background: linear-gradient(217deg, rgba(128, 51, 0, 0.747), rgba(255,0,0,0) 70.71%),            
+                linear-gradient(127deg, rgb(99, 59, 0), rgba(0,255,0,0) 70.71%),            
+                linear-gradient(336deg, rgba(94, 0, 0, 0.8), rgba(0,0,255,0) 70.71%);
+    color: yellow;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     max-width: 600px;
   }
-  
+
   .close {
     color: #aaa;
     float: right;
