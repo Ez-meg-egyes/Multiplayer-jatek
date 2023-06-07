@@ -76,7 +76,7 @@ class Palya {
             return false;
         }
         let i = 0;
-        while (i < karakterek.length && !(karakterek[i].getX() == x && karakterek[i].getY() == y)) {
+        while (i < karakterek.length && (karakterek[i].getEletero() < 0 || !(karakterek[i].getX() == x && karakterek[i].getY() == y))) {
             i++;
         }
 
