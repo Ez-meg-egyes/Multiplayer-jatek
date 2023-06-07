@@ -279,12 +279,26 @@ class Jatekter {
 
     #modal(){
         if(this.#ellensegek.length == 0 || (this.#jatekosok[0].getEletero() <= 0 && this.#jatekosok[1].getEletero() <= 0)){
+            let palindromok = [];
             $("#myModal").css("display","block");
             if (this.#ellensegek.length == 0) {
-                $("#myModal p").html("A játékosok nyertek");
+                $("#myModal #nyert").html("A játékosok nyertek");
             } else{
-                $("#myModal p").html("Az ellenségek nyertek");
+                $("#myModal #nyert").html("Az ellenségek nyertek");
             }
+            fetch('./palindromok.json')
+                .then((response) => response.json())
+                .then((json) => {
+                    palindromok = json
+                    let id = this.#randomSzam(0, palindromok.length);
+                    $("#myModal #pali").html(palindromok[id]);
+
+                })
+                .catch((err) => {
+                    $("#myModal #pali").html("Nincs palindrom ☹");
+                    
+                })
+
         }
     }
 }
