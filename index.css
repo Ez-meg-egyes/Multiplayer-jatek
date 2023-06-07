@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: cursive;
 }
 
 body {
@@ -21,9 +22,6 @@ main {
     max-width: 1000px;
     aspect-ratio: 100 / 56;
     background-color: grey;
-    background-image: url("kepek/bg.jpg ");
-    background-position: center;
-    background-size: cover;
     border: 2px solid black;
 }
 main > div {
@@ -42,16 +40,38 @@ main .oldalso {
     align-content: space-around;
 }
 
-#indit{
-    width: 50%;
-    height: 20%;
+#menu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    background-image: url("kepek/bg.jpg ");
+    background-position: center;
+    background-size: cover;
+    color: yellow;
+    gap: 10px;
+}
+#menu > * {
+    flex: 0 0 100%;
+    font-size: 20px;
+}
+#menu input, #menu button {
     background: linear-gradient(217deg, rgba(128, 51, 0, 0.747), rgba(255,0,0,0) 70.71%),            
                 linear-gradient(127deg, rgb(99, 59, 0), rgba(0,255,0,0) 70.71%),            
                 linear-gradient(336deg, rgba(94, 0, 0, 0.8), rgba(0,0,255,0) 70.71%);
     color: yellow;
-    font-size: 30px;
-    font-family: cursive;
+    flex: 0 0 50%;
 }
+#indit{
+    aspect-ratio: 5 / 1.5;
+    color: yellow;
+    font-size: 30px;
+}
+
+
 
 .kocka {
     flex: 0 0 calc(10% - 3px);
@@ -127,6 +147,18 @@ footer a:hover{
     background-image: url("kepek/jatekos.gif");
     background-position: center;
     background-size: cover;
+    color: yellow;
+    font-size: 90%;
+    position: relative;
+}
+
+.nev {
+    width: auto;
+    position: absolute;
+    width: 200%;
+    left: -50%;
+    text-align: center;
+    cursor: default;
 }
 
 .ellenseg {

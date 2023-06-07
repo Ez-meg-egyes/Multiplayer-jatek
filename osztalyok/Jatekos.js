@@ -5,7 +5,7 @@ class Jatekos extends Karakter {
     #targyak;
 
     constructor(id, eletero, sebzes, pos, kep, nev, szuloElem) {
-        super(id, eletero, sebzes, pos, kep, szuloElem);
+        super(id, eletero, sebzes, pos, kep, szuloElem, "jatekos");
         this.#nev = nev;
         this.htmlBeagyazas(szuloElem);
     }
@@ -15,7 +15,7 @@ class Jatekos extends Karakter {
     }
 
     htmlBeagyazas(szuloElem) {
-        szuloElem.append(`<div id="jatekos-${this.getId()}" class="karakter"></div>`)
+        szuloElem.append(`<div id="jatekos-${this.getId()}" class="karakter"><div class="nev">${this.#nev}</div>`)
     }
 
 }

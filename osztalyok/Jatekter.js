@@ -8,12 +8,11 @@ class Jatekter {
     #ellensegek =[];
 
     constructor() {
-        const INDIT = $("#indit");
         const MAIN = $("main");
-        INDIT.on("click", () => {
+        $("#indit").on("click", () => {
             $("#zene").play;
             $("#jatekTer").focus();
-            INDIT.css("display", "none");
+            $("#menu").css("display", "none");
             MAIN.css("background-image", "none");
             this.#aktualisPalya = new Palya(1, 2, [10, 8]);
             this.#scrollblock();
@@ -133,6 +132,24 @@ class Jatekter {
         });
     }
 
+    #ellensegekAKozelben(karakter) {
+        const ELTOLASOK = [[0, 1], [0, -1], [1, 0], [-1, 0]];
+        let karakterek = this.#jatekosok.slice().concat(this.#ellensegek);
+        const karakterPos = karakter.getPos();
+        let kozelbenLevok = [];
+
+        karakterek.forEach(masikKarakter => {
+            ELTOLASOK.forEach(eltolas => {
+            const masikPos = masikKarakter.getPos();
+                if ((karakter.getTipus() != masikKarakter.getTipus()) && (masikPos[1] === (karakterPos[1] + eltolas[0]) && masikPos[0] === (karakterPos[0] + eltolas[1]))) {
+                    kozelbenLevok.push(masikKarakter);
+                }
+            });
+        });
+
+        return kozelbenLevok;
+    }
+
     #ellensegEletLevonas(id) {
         let e = this.#ellensegek[id];
         if (e && e.getEletero() > 0) {
@@ -179,6 +196,10 @@ class Jatekter {
             }
         });
     }
+    #ellensegTamadasKezeles() {
+        const ellensegek = this.#ellensegekAKozelben(jatekos);
+    }
+
     #randomSzam(min, max) {
         return Math.round((Math.random() * (max - min)) + min);
     }
@@ -196,9 +217,6 @@ class Jatekter {
 
     }
 
-    #ellensegTamadasKezeles() {
-
-    }
 }
 
 export default Jatekter;

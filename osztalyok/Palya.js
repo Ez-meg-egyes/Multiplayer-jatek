@@ -84,14 +84,19 @@ class Palya {
     }
 
     jatekosInit(){
+        let j1Input = $("#jatekos-1-input");
+        let j2Input = $("#jatekos-2-input");
+        let jatekos1Nev = j1Input.val().length > 0 ? j1Input.val() : j1Input.attr("placeholder"); 
+        let jatekos2Nev = j2Input.val().length > 0 ? j2Input.val() : j2Input.attr("placeholder"); 
+
         let hely = this.getRandomHely();
         let x = hely[0];
         let y = hely[1];
-        this.#jatekosok.push(new Jatekos(1, 10, 2, [x, y], "./kepek/jatekos.gif", "Teszt", this.#palyaElemek[x][y].getDivElem()));
+        this.#jatekosok.push(new Jatekos(1, 10, 2, [x, y], "./kepek/jatekos.gif", jatekos1Nev, this.#palyaElemek[x][y].getDivElem()));
         hely = this.getRandomHely();
         x = hely[0];
         y = hely[1];
-        this.#jatekosok.push(new Jatekos(2, 10, 2, [x, y], "./kepek/jatekos.gif", "Teszt", this.#palyaElemek[x][y].getDivElem()));
+        this.#jatekosok.push(new Jatekos(2, 10, 2, [x, y], "./kepek/jatekos.gif", jatekos2Nev, this.#palyaElemek[x][y].getDivElem()));
     }
 
     getJatekosok() {

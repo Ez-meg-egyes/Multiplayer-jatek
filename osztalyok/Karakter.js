@@ -8,14 +8,16 @@ class Karakter {
     #divElem;
     #szuloElem;
     #id;
+    #tipus;
 
-    constructor(id, eletero, sebzes, pos, kep, szuloElem) {
+    constructor(id, eletero, sebzes, pos, kep, szuloElem, tipus) {
         this.setEletero(eletero);
         this.setSebzes(sebzes);
         this.setPos(pos);
         this.#id = id;
         this.#kep = kep;
         this.#szuloElem = szuloElem;
+        this.#tipus = tipus;
     }
 
     getEletero() {
@@ -53,6 +55,10 @@ class Karakter {
     setPos(ujPos) {
         this.#pos = ujPos;
 
+    }
+
+    getTipus() {
+        return this.#tipus;
     }
 
     modositEletero(modosito) {
