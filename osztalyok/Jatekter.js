@@ -10,7 +10,7 @@ class Jatekter {
     constructor() {
         const MAIN = $("main");
         $("#indit").on("click", () => {
-            $("#zene").play;
+            $("#zene")[0].play();
             $("#jatekTer").focus();
             $("#menu").css("display", "none");
             MAIN.css("background-image", "none");
@@ -191,14 +191,17 @@ class Jatekter {
 
     #ellensegEletLevonas(id) {
         let e = this.#ellensegek[id];
-        if (e && e.getEletero() > 0) {
-            console.log("eletero " + e.getEletero());
+        if (e) {
             e.setEletero(e.getEletero() - this.#jatekosok[0].getSebzes());
-            console.log("megmaradt eletero: " + e.getEletero());
-        } else {
-            $(`#ellenseg-${e.getId()}`).remove();
-            console.log("meghalt: ellenseg-" + e.getId());
-            this.#ellensegek.splice(id,1);
+            $(`#ellenseg-${e.getId()} .hp`).html(`${e.getEletero()}`);
+            if (e.getEletero() > 0) {
+                console.log("eletero " + e.getEletero());
+                console.log("megmaradt eletero: " + e.getEletero());
+            } else {
+                $(`#ellenseg-${e.getId()}`).remove();
+                console.log("meghalt: ellenseg-" + e.getId());
+                this.#ellensegek.splice(id,1);
+            }
         }
     }
 
