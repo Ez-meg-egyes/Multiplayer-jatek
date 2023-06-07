@@ -24,7 +24,8 @@ class Jatekter {
 
             setInterval(() => {
                 this.#ellensegMozgatas();
-            }, 1000);
+                this.#ellensegTamadasKezeles();
+            }, 1500);
         });
         
     }
@@ -57,21 +58,27 @@ class Jatekter {
                 P2offsety += 1;
             }
             let jatekos = this.#jatekosok[0];
-            if (this.#aktualisPalya.ralepheto(jatekos.getX() + P1offsetx, jatekos.getY() + P1offsety)) {
-                
-                jatekos.setPos([jatekos.getX() + P1offsetx, jatekos.getY() + P1offsety]);
-                $("#jatekos-1").remove();
-                let aktualisPalyaElem1 = this.#aktualisPalya.getPalyaElem(jatekos.getPos()[0], jatekos.getPos()[1]).getDivElem();
-                jatekos.htmlBeagyazas(aktualisPalyaElem1);
-                
-            } 
+            if (jatekos.getEletero() > 0) {
+                if (this.#aktualisPalya.ralepheto(jatekos.getX() + P1offsetx, jatekos.getY() + P1offsety)) {
+                    
+                    jatekos.setPos([jatekos.getX() + P1offsetx, jatekos.getY() + P1offsety]);
+                    $("#jatekos-1").remove();
+                    let aktualisPalyaElem1 = this.#aktualisPalya.getPalyaElem(jatekos.getPos()[0], jatekos.getPos()[1]).getDivElem();
+                    jatekos.htmlBeagyazas(aktualisPalyaElem1);
+                    
+                } 
+
+            }
             let jatekos2 = jatekosok[1];
-            if (this.#aktualisPalya.ralepheto(jatekos2.getX() + P2offsetx, jatekos2.getY() + P2offsety)) {
+            if (jatekos2.getEletero() > 0) {
+                if (this.#aktualisPalya.ralepheto(jatekos2.getX() + P2offsetx, jatekos2.getY() + P2offsety)) {
+                    
+                    jatekos2.setPos([jatekos2.getX() + P2offsetx, jatekos2.getY() + P2offsety]);
+                    $("#jatekos-2").remove();
+                    let aktualisPalyaElem2 = this.#aktualisPalya.getPalyaElem(jatekos2.getPos()[0], jatekos2.getPos()[1]).getDivElem();
+                    jatekos2.htmlBeagyazas(aktualisPalyaElem2);
+                }
                 
-                jatekos2.setPos([jatekos2.getX() + P2offsetx, jatekos2.getY() + P2offsety]);
-                $("#jatekos-2").remove();
-                let aktualisPalyaElem2 = this.#aktualisPalya.getPalyaElem(jatekos2.getPos()[0], jatekos2.getPos()[1]).getDivElem();
-                jatekos2.htmlBeagyazas(aktualisPalyaElem2);
             }
             
         });
@@ -82,7 +89,8 @@ class Jatekter {
         let tamadhat2;
         $("#jatekTer").on("keydown", (event) => {
             let jatekos = this.#aktualisPalya.getJatekosok()[0];
-            
+            if (jatekos.getEletero() <= 0) {return;}
+
             if (typeof tamadhat1 === 'undefined') {
                 tamadhat1 = true;
             }
@@ -123,6 +131,8 @@ class Jatekter {
         $("#jatekTer").on("keydown", (event) => {
             
             let jatekos = this.#aktualisPalya.getJatekosok()[1];
+            if (jatekos.getEletero() <= 0) {return;}
+
             if (typeof tamadhat2 === 'undefined') {
                 tamadhat2 = true;
             }
@@ -198,7 +208,6 @@ class Jatekter {
 
     #ellensegMozgatas() {
         this.#ellensegek.forEach(ellenseg => {
-            
             let palyaElem, ujPos, irany, mozgas, lepheto;
             const REGI_POS = ellenseg.getPos();
             let rosszIranyok = [];
@@ -226,7 +235,26 @@ class Jatekter {
         });
     }
     #ellensegTamadasKezeles() {
-        const ellensegek = this.#ellensegekAKozelben(jatekos);
+        this.#ellensegek.forEach(ellenseg => {
+            if (ellenseg.getEletero() > 0) {
+                $(`#ellenseg-${ellenseg.getId()}`).css('background-image', 'url("kepek/ellenseg_tamadas.gif")');
+                const jatekosok = this.#ellensegekAKozelben(ellenseg);
+                for (let i = 0; i < jatekosok.length; i++) {
+                    const jatekos = jatekosok[i];
+                    
+                    jatekos.modositEletero(-ellenseg.getSebzes());
+                    $(`#jatekos-${jatekos.getId()} .hp`).html(`${jatekos.getEletero()}`);
+                    if(jatekos.getEletero() <= 0) {
+                        $(`#jatekos-${jatekos.getId()}`).remove();
+                    }
+                    
+                }
+
+                setTimeout(() => {
+                    $(`#ellenseg-${ellenseg.getId()}`).css('background-image', 'url("kepek/ellenseg.gif")');
+                }, 1450);
+            }
+        });
     }
 
     #randomSzam(min, max) {

@@ -15,7 +15,13 @@ class Jatekos extends Karakter {
     }
 
     htmlBeagyazas(szuloElem) {
-        szuloElem.append(`<div id="jatekos-${this.getId()}" class="karakter"><div class="nev">${this.#nev}</div>`)
+        szuloElem.append(`<div id="jatekos-${this.getId()}" class="karakter">
+                            <div class="nev">
+                                ${this.#nev}
+                                <div class="hp">${this.getEletero()}</div>
+                            </div>
+
+                          </div>`)
     }
 
 }
