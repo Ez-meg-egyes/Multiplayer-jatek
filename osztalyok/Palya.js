@@ -107,10 +107,6 @@ class Palya {
         if (x > this.#palyaMeret[0] || y > this.#palyaMeret[1] || x < 0 || y < 0) {return false;}
         return this.#palyaElemek[x][y];
     }
-
-    getPalyaMeret() {
-
-    }
     
     getRandomHely(){
         let x, y;
