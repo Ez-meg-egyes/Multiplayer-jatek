@@ -10,7 +10,7 @@ class Jatekter {
     constructor() {
         const MAIN = $("main");
         $("#indit").on("click", () => {
-            $("#zene").play;
+            $("#zene")[0].play();
             $("#jatekTer").focus();
             $("#menu").css("display", "none");
             MAIN.css("background-image", "none");
@@ -84,58 +84,87 @@ class Jatekter {
     }
 
     #tamadasKezeles() {
+        let tamadhat1;
+        let tamadhat2;
         $("#jatekTer").on("keydown", (event) => {
             let jatekos = this.#aktualisPalya.getJatekosok()[0];
             if (jatekos.getEletero() <= 0) {return;}
-            if (event.keyCode === 32) {
-                $("#jatekos-1").css('background-image', 'url("kepek/harc.gif")');
-                for (let index = 0; index < this.#ellensegek.length; index++) {
-                    if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] + 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
-                        this.#ellensegEletLevonas(index);
+
+            if (typeof tamadhat1 === 'undefined') {
+                tamadhat1 = true;
+            }
+            if (tamadhat1) {
+                if (event.keyCode === 32) {
+
+                    $("#jatekos-1").css('background-image', 'url("kepek/harc.gif")');
+                    setTimeout(() => {
+                        $("#jatekos-1").css('background-image', 'url("kepek/jatekos.gif")');
+                    }, 600);
+                    for (let index = 0; index < this.#ellensegek.length; index++) {
+                        if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] + 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
+                            this.#ellensegEletLevonas(index);
+                        }
                     }
-                }
-                for (let index = 0; index < this.#ellensegek.length; index++) {
-                    if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] - 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
-                        this.#ellensegEletLevonas(index);
+                    for (let index = 0; index < this.#ellensegek.length; index++) {
+                        if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] - 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
+                            this.#ellensegEletLevonas(index);
+                        }
                     }
-                }
-                for (let index = 0; index < this.#ellensegek.length; index++) {
-                    if (this.#ellensegek[index].getPos()[1] === jatekos.getPos()[1] && this.#ellensegek[index].getPos()[0] === (jatekos.getPos()[0] + 1)) {
-                        this.#ellensegEletLevonas(index);
+                    for (let index = 0; index < this.#ellensegek.length; index++) {
+                        if (this.#ellensegek[index].getPos()[1] === jatekos.getPos()[1] && this.#ellensegek[index].getPos()[0] === (jatekos.getPos()[0] + 1)) {
+                            this.#ellensegEletLevonas(index);
+                        }
                     }
-                }
-                for (let index = 0; index < this.#ellensegek.length; index++) {
-                    if (this.#ellensegek[index].getPos()[1] === jatekos.getPos()[1] && this.#ellensegek[index].getPos()[0] === (jatekos.getPos()[0] - 1)) {
-                        this.#ellensegEletLevonas(index);
+                    for (let index = 0; index < this.#ellensegek.length; index++) {
+                        if (this.#ellensegek[index].getPos()[1] === jatekos.getPos()[1] && this.#ellensegek[index].getPos()[0] === (jatekos.getPos()[0] - 1)) {
+                            this.#ellensegEletLevonas(index);
+                        }
                     }
-                }
+                    tamadhat1 = false;
+                    setTimeout(() => {
+                        tamadhat1 = true;
+                    }, 1000);
+                } 
             }
         });
         $("#jatekTer").on("keydown", (event) => {
+            
             let jatekos = this.#aktualisPalya.getJatekosok()[1];
             if (jatekos.getEletero() <= 0) {return;}
 
-            if (event.code === "ControlRight") {
-                $("#jatekos-2").css('background-image', 'url("kepek/harc.gif")');
-                for (let index = 0; index < this.#ellensegek.length; index++) {
-                    if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] + 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
-                        this.#ellensegEletLevonas(index);
+            if (typeof tamadhat2 === 'undefined') {
+                tamadhat2 = true;
+            }
+            if (tamadhat2) {
+                if (event.code === "ControlRight") {
+                    $("#jatekos-2").css('background-image', 'url("kepek/harc.gif")');
+                    setTimeout(() => {
+                        $("#jatekos-2").css('background-image', 'url("kepek/jatekos.gif")');
+                    }, 600);
+                    for (let index = 0; index < this.#ellensegek.length; index++) {
+                        if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] + 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
+                            this.#ellensegEletLevonas(index);
+                        }
                     }
-                }
-                for (let index = 0; index < this.#ellensegek.length; index++) {
-                    if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] - 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
-                        this.#ellensegEletLevonas(index);
+                    for (let index = 0; index < this.#ellensegek.length; index++) {
+                        if (this.#ellensegek[index].getPos()[1] === (jatekos.getPos()[1] - 1) && this.#ellensegek[index].getPos()[0] === jatekos.getPos()[0]) {
+                            this.#ellensegEletLevonas(index);
+                        }
                     }
-                }
-                for (let index = 0; index < this.#ellensegek.length; index++) {
-                    if (this.#ellensegek[index].getPos()[1] === jatekos.getPos()[1] && this.#ellensegek[index].getPos()[0] === (jatekos.getPos()[0] + 1)) {
-                        this.#ellensegEletLevonas(index);
+                    for (let index = 0; index < this.#ellensegek.length; index++) {
+                        if (this.#ellensegek[index].getPos()[1] === jatekos.getPos()[1] && this.#ellensegek[index].getPos()[0] === (jatekos.getPos()[0] + 1)) {
+                            this.#ellensegEletLevonas(index);
+                        }
                     }
-                }
-                for (let index = 0; index < this.#ellensegek.length; index++) {
-                    if (this.#ellensegek[index].getPos()[1] === jatekos.getPos()[1] && this.#ellensegek[index].getPos()[0] === (jatekos.getPos()[0] - 1)) {
-                        this.#ellensegEletLevonas(index);
+                    for (let index = 0; index < this.#ellensegek.length; index++) {
+                        if (this.#ellensegek[index].getPos()[1] === jatekos.getPos()[1] && this.#ellensegek[index].getPos()[0] === (jatekos.getPos()[0] - 1)) {
+                            this.#ellensegEletLevonas(index);
+                        }
                     }
+                    tamadhat2 = false;
+                    setTimeout(() => {
+                        tamadhat2 = true;
+                    }, 1000);
                 }
             }
         });
@@ -161,14 +190,17 @@ class Jatekter {
 
     #ellensegEletLevonas(id) {
         let e = this.#ellensegek[id];
-        if (e && e.getEletero() > 0) {
-            console.log("eletero " + e.getEletero());
+        if (e) {
             e.setEletero(e.getEletero() - this.#jatekosok[0].getSebzes());
-            console.log("megmaradt eletero: " + e.getEletero());
-        } else {
-            $(`#ellenseg-${e.getId()}`).remove();
-            console.log("meghalt: ellenseg-" + e.getId());
-            this.#ellensegek.splice(id,1);
+            $(`#ellenseg-${e.getId()} .hp`).html(`${e.getEletero()}`);
+            if (e.getEletero() > 0) {
+                console.log("eletero " + e.getEletero());
+                console.log("megmaradt eletero: " + e.getEletero());
+            } else {
+                $(`#ellenseg-${e.getId()}`).remove();
+                console.log("meghalt: ellenseg-" + e.getId());
+                this.#ellensegek.splice(id,1);
+            }
         }
         this.#modal();
     }
