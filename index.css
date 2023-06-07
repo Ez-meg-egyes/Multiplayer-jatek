@@ -6,14 +6,14 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
     background: linear-gradient(217deg, rgba(128, 51, 0, 0.747), rgba(255,0,0,0) 70.71%),            
                 linear-gradient(127deg, rgb(99, 59, 0), rgba(0,255,0,0) 70.71%),            
                 linear-gradient(336deg, rgba(94, 0, 0, 0.8), rgba(0,0,255,0) 70.71%);
 }
 
 main {
-    margin: 50px auto;
+    margin: 10px auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -101,6 +101,39 @@ main .oldalso {
     display: none;
     width: 100vw;
     text-align: center;
+}
+
+
+#info{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex: 0 0 25%;
+    font-size: 12px;
+    color: yellow;
+    font-family: cursive;
+}
+
+.jatekos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 0 0 50%;
+}
+
+.gombok{
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+}
+
+.elem{
+    width: 100px;
+    flex: 0 0 calc(33.33% - 10px);
 }
 
 footer{
