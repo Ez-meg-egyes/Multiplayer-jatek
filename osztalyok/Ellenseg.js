@@ -12,7 +12,9 @@ class Ellenseg extends Karakter {
     }
 
     htmlBeagyazas(szuloElem) {
-        szuloElem.append(`<div id="ellenseg-${this.getId()}" class="ellenseg"></div>`); 
+        szuloElem.append(`<div id="ellenseg-${this.getId()}" class="ellenseg">
+                            <div class="hp">${this.getEletero()}</div>
+                          </div>`); 
     }
 }
 
