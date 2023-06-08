@@ -241,8 +241,12 @@ class Jatekter {
     #ellensegTamadasKezeles() {
         this.#ellensegek.forEach(ellenseg => {
             if (ellenseg.getEletero() > 0) {
-                $(`#ellenseg-${ellenseg.getId()}`).css('background-image', 'url("kepek/ellenseg_tamadas.gif")');
                 const jatekosok = this.#ellensegekAKozelben(ellenseg);
+                if (jatekosok.length > 0) {
+                    $(`#ellenseg-${ellenseg.getId()}`).css('background-image', 'url("kepek/ellenseg_tamadas.gif")');
+                    setTimeout(() => {
+                        $(`#ellenseg-${ellenseg.getId()}`).css('background-image', 'url("kepek/ellenseg.gif")');
+                    }, 1450);
                 for (let i = 0; i < jatekosok.length; i++) {
                     const jatekos = jatekosok[i];
                     
@@ -254,9 +258,7 @@ class Jatekter {
                     
                 }
                 this.#modal();
-                setTimeout(() => {
-                    $(`#ellenseg-${ellenseg.getId()}`).css('background-image', 'url("kepek/ellenseg.gif")');
-                }, 1450);
+                }
             }
         });
     }
