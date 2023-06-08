@@ -7,6 +7,7 @@ class Jatekter {
     #aktualisPalya;
     #jatekosok;
     #ellensegek =[];
+    #ellensegInterval;
 
     constructor() {
         const MAIN = $("main");
@@ -23,7 +24,7 @@ class Jatekter {
             this.#jatekosok = this.#aktualisPalya.getJatekosok();
             this.#ellensegek = this.#aktualisPalya.getEllensegek();
 
-            setInterval(() => {
+            this.#ellensegInterval = setInterval(() => {
                 this.#ellensegMozgatas();
                 this.#ellensegTamadasKezeles();
             }, 1500);
@@ -279,6 +280,8 @@ class Jatekter {
 
     #modal(){
         if(this.#ellensegek.length == 0 || (this.#jatekosok[0].getEletero() <= 0 && this.#jatekosok[1].getEletero() <= 0)){
+            clearInterval(this.#ellensegInterval);
+            
             $("#myModal").css("display","block");
             let id = this.#randomSzam(0, PALINDROMOK.length);
 
