@@ -129,7 +129,6 @@ class Jatekter {
             }
         });
         $("#jatekTer").on("keydown", (event) => {
-            
             let jatekos = this.#aktualisPalya.getJatekosok()[1];
             if (jatekos.getEletero() <= 0) {return;}
 
@@ -137,7 +136,7 @@ class Jatekter {
                 tamadhat2 = true;
             }
             if (tamadhat2) {
-                if (event.code === "ControlRight") {
+                if (event.code === "Numpad0") {
                     $("#jatekos-2").css('background-image', 'url("kepek/harc.gif")');
                     setTimeout(() => {
                         $("#jatekos-2").css('background-image', 'url("kepek/jatekos.gif")');
